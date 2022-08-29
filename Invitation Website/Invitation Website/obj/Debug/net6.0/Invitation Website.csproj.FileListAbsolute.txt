@@ -1,0 +1,26 @@
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\appsettings.json
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\Invitation Website.staticwebassets.runtime.json
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\Invitation Website.exe
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\Invitation Website.deps.json
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\Invitation Website.runtimeconfig.json
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\Invitation Website.dll
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\bin\Debug\net6.0\Invitation Website.pdb
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.csproj.AssemblyReference.cache
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.AssemblyInfoInputs.cache
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.AssemblyInfo.cs
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.csproj.CoreCompileInputs.cache
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.RazorAssemblyInfo.cache
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.RazorAssemblyInfo.cs
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\scopedcss\bundle\Invitation Website.styles.css
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\scopedcss\projectbundle\Invitation Website.bundle.scp.css
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.dll
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\refint\Invitation Website.dll
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.pdb
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\Invitation Website.genruntimeconfig.cache
+C:\Users\Haunschmied.Bastian\Documents\GitHub\PartyInvitation\Invitation Website\Invitation Website\obj\Debug\net6.0\ref\Invitation Website.dll

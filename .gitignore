@@ -2,15 +2,14 @@
 
 ##### Folders #####
 build/
-dist/
 node_modules/
-vendor/
 var/
 .tmp/
 
 # IDE's
 .vscode/
 .idea/
+.vs/
 
 
 ##### Files #####
