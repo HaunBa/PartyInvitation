@@ -1,0 +1,124 @@
+﻿@page "/Invitation/{UserHash}"
+
+@inject NavigationManager _nav
+@inject IPersonService _person
+@inject IRequestService _req
+
+@code {
+    [Parameter]
+    public string UserHash { get; set; }
+
+    public Person Person { get; set; } = new();
+    List<Request> Requests = new();
+    string input = "";
+    int amount = 1;
+
+    int accepted = 0;
+    int maybe = 0;
+    int declined = 0;
+
+    List<int> PeopleCount = new();
+
+    int state = 0;
+
+    void SetState(int num){
+        state = num;
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    void AddToList(){
+        var req = new Request()
+        {
+            RequestAmount = amount,
+            RequestArticle = input
+        };
+
+        Requests.Add(req);
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    void RemoveFromList(string articleName){
+        Requests.Remove(Requests.First(x => x.RequestArticle.Equals(articleName)));
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    protected override async void OnInitialized()
+    {
+        var person = await _person.GetPersonByHash(UserHash);
+        if (person == null) _nav.NavigateTo("~/");
+        if (!await _person.IsPersonAllowed(UserHash)) _nav.NavigateTo("~/");
+
+        PeopleCount = await _person.GetAllReports();
+
+        Person = person;
+    }
+}
+
+<div class="container">
+    <div class="row text-center">
+        <!-- Greeting -->
+        <h1>Hallo @Person.PersonName !</h1>
+    </div>
+    <div class="row text-center mt-5">
+        <!-- Text -->
+        <h3>Hier steht Text : )</h3>
+    </div>
+    <div class="row mt-5">
+        <!-- Form -->
+
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Anzahl</th>
+                        <th scope="col">Löschen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Requests)
+                    {
+                        <tr>
+                            <td>@item.RequestArticle</td>
+                            <td>@item.RequestAmount</td>
+                            <td><button class="btn btn-danger" @onclick="() => RemoveFromList(item.RequestArticle)">Löschen</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-4" >
+                <input @bind=amount type="number" min="1" class="form-control" />
+                <input @bind=input type="text" class="form-control"/>
+
+            </div>
+            <div class="col-4">
+                <button class="btn btn-primary" @onclick="() => AddToList()"> Add </button>
+            </div>
+        </div>
+
+        <div class="col">
+            <button class="@(state == 1 ? "btn btn-success" : "btn btn-outline-success")" @onclick="() => SetState(1)">Zusagen</button>
+        </div>
+        <div class="col">
+            <button class="@(state == 2 ? "btn btn-warning" : "btn btn-outline-warning")" @onclick="() => SetState(2)"> Vielleicht</button>
+        </div>
+        <div class="col">
+            <button class="@(state == 3 ? "btn btn-danger" : "btn btn-outline-danger")" @onclick="() => SetState(3)"> Absage</button>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Statistics -->
+
+        <h3>Anzahl Eingeladener: @PeopleCount[0]</h3>
+        <h3>Noch nicht Zu/ Abgesagt: @PeopleCount[1]</h3>
+        <h3>Zugesagt : @PeopleCount[2]</h3>
+        <h3>Vielleicht: @PeopleCount[3]</h3>
+        <h3>Abgesagt: @PeopleCount[4]</h3>
+    </div>
+</div>

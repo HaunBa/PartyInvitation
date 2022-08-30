@@ -1,0 +1,47 @@
+﻿@using Invitation_Website.Pages
+@model Person
+
+@{
+    Layout = "_Layout";
+
+    List<Request> requests = new();
+
+    int state = 0;
+
+    void SetState(int num){
+        state = num;
+    }
+
+    void AddRequestToList(){
+
+    }
+
+    void AddToCounter(){
+        state++;
+    }
+
+}
+
+<div class="container">
+    <div class="row text-center">
+        <!-- Greeting -->
+        <h1>Hallo @Model.PersonName !</h1>
+    </div>
+    <div class="row">
+        <!-- Text -->
+
+        yeet
+    </div>
+    <div class="row">
+        <!-- Form -->
+        <div class="col">
+            <button class="btn btn-success">Zusagen</button>
+        </div>
+        <div class="col">
+            <button class="btn btn -warning">Vielleicht</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-outline-danger">Absage</button>
+        </div>
+    </div>
+</div>
