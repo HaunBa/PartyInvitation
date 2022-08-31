@@ -20,8 +20,6 @@ builder.Services.AddDbContext<InvitationToolContext>(options => options
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 
-
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
