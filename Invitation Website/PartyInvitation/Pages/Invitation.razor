@@ -4,6 +4,26 @@
 @inject IPersonService _person
 @inject IRequestService _req
 
+<style>
+    body{
+        color: #D7AF00;
+        background: #0a0a0a;
+    }
+
+    th{
+        color: #ffd404;
+    }
+
+    td{
+        color: #ffd404;
+    }
+
+    table{
+        color: #ffd404;
+        background: #0a0a0a;
+    }
+</style>
+
 @code {
     [Parameter]
     public string UserHash { get; set; }
@@ -13,9 +33,7 @@
     string input = "";
     int amount = 1;
 
-    int accepted = 0;
-    int maybe = 0;
-    int declined = 0;
+    bool hidden = true;
 
     List<int> PeopleCount = new();
 
@@ -24,10 +42,15 @@
     void SetState(int num){
         state = num;
 
+        hidden = true;
+
         InvokeAsync(StateHasChanged);
     }
 
     void AddToList(){
+
+        if (string.IsNullOrEmpty(input)) return;
+
         var req = new Request()
         {
             RequestAmount = amount,
@@ -40,6 +63,13 @@
     }
 
     void Submit(){
+
+        if (state == 0)
+        {
+            hidden = false;
+            InvokeAsync(StateHasChanged);
+            return;
+        }
 
         foreach (var item in Requests)
         {
@@ -77,7 +107,10 @@
             PeopleCount.Add(0);
         }
         var person = await _person.GetPersonByHash(UserHash);
-        if (person == null) _nav.NavigateTo("~/");
+        if (person == null) {
+            _nav.NavigateTo("");
+            return;
+        }
 
         //if (!await _person.IsPersonAllowed(UserHash)) {
         //    _nav.NavigateTo("");
@@ -97,13 +130,36 @@
     </div>
     <div class="row text-center mt-5">
         <!-- Text -->
-        <h3>Hier steht Text : )</h3>
+        <div style="font-size: 35px" class="mb-5">
+            Es ist wieder soweit.<br />
+            Nach Jahren der Enthaltsamkeit und des Ausharrens geht es weiter.<br />
+            Haunis Kellerparty steht wieder in den Startlöchern für die nächste Runde und du bist mitten drin.
+        </div>
+
+        <h2><ins>Wann ? </ins></h2>
+        <h3 class="mb-5">yes</h3>
+
+        <h2><ins>Wo ?</ins></h2>
+        <h3 class="mb-5">In Haunschmied's Kellerstüberl</h3>
+
+        <h2><ins>Wieviele Leute kommen?</ins></h2>
+        <h3 class="mb-5">Den aktuellen Stand kannst du weiter unten Nachlesen.</h3>
+        
+        <h2><ins>Wie siehts mit Speisen und Getränken aus?</ins></h2>
+        <h3 class="mb-5">Nachdem ich nicht auswendig weiß wer was isst / trinkt, bitte ich dich deine Wünsche unten in die Tabelle ein zu tragen</h3>
+
+        <h2><ins>Wie kann ich Zu- / Absagen?</ins></h2>
+        <h3 class="mb-5">Unter den Getränke befinden sich 3 Buttons. Zusagen, Vielleicht, Absagen. Einfach auf einen Klicken, sodass der Button voll ist. So einfach ist es. </h3>
+
+        <h2><ins>Gibt es sonst noch etwas zu Wissen?</ins></h2>
+        <h3>Ja. "Ihr verliert kein Wort über Haunis Kellerparty"</h3>
+
     </div>
     <div class="row justify-content-center mt-5">
         <!-- Form -->
 
         <div class="row">
-            <table class="table table-striped">
+            <table class="table table-striped text-center">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -124,31 +180,40 @@
             </table>
         </div>
 
-        <div class="row justify-content-center mb-5">
-            <div class="col-4" >
-                <input @bind=amount type="number" min="1" class="form-control" />
-                <input @bind=input type="text" class="form-control"/>
-
+        <div class="row justify-content-center mb-5 mt-5">
+            <div class="col-sm mt-2" >
+                <input @bind=amount type="number" min="1" class="form-control bg-black" />
             </div>
-            <div class="col-4">
-                <button class="btn btn-primary" @onclick="() => AddToList()"> Add </button>
+            <div class="col-sm-7 mt-2">
+                <input @bind=input type="text" class="form-control bg-black" />
+            </div>
+            <div class="col-sm mt-2">
+                <button class="btn btn-warning" style="width: 100%" @onclick="() => AddToList()"> Add </button>
             </div>
         </div>
-
-        <div class="col">
-            <button class="@(state == 1 ? "btn btn-success" : "btn btn-outline-success")" @onclick="() => SetState(1)">Zusagen</button>
+        <div class="row text-center">
+            <div class="alert alert-danger @(hidden ? "invisible" : "visible")" role="alert">
+                <p>Du musst noch Eine Zu- / Absage machen.</p>
+            </div>
         </div>
         <div class="col">
-            <button class="@(state == 2 ? "btn btn-warning" : "btn btn-outline-warning")" @onclick="() => SetState(2)"> Vielleicht</button>
-        </div>
-        <div class="col">
-            <button class="@(state == 3 ? "btn btn-danger" : "btn btn-outline-danger")" @onclick="() => SetState(3)"> Absage</button>
+            <div class="row">
+                <div class="col mb-3">
+                    <button class="@(state == 1 ? "btn btn-success" : "btn btn-outline-success") w-100" @onclick="() => SetState(1)">Zusagen</button>
+                </div>
+                <div class="col">
+                    <button class="@(state == 2 ? "btn btn-warning" : "btn btn-outline-warning") w-100" @onclick="() => SetState(2)"> Vielleicht</button>
+                </div>
+                <div class="col">
+                    <button class="@(state == 3 ? "btn btn-danger" : "btn btn-outline-danger") w-100" @onclick="() => SetState(3)"> Absagen</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row mb-5">
+    <div class="row mb-5 text-center mt-5">
         <!-- Statistics -->
 
-        <h3>Anzahl Eingeladener: @PeopleCount[0]</h3>
+        <h3>Anzahl eingeladener Personen: @PeopleCount[0]</h3>
         <h3>Noch nicht Zu/ Abgesagt: @PeopleCount[1]</h3>
         <h3>Zugesagt : @PeopleCount[2]</h3>
         <h3>Vielleicht: @PeopleCount[3]</h3>
@@ -161,7 +226,7 @@
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="submitContext" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" style="color: black;" id="submitContext" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -173,8 +238,8 @@
                         Nach dem Abschicken können deine Eingaben nicht mehr geändert werden.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="() => Submit()" >Abschicken</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="() => Submit()" >Fertig</button>
                     </div>
                 </div>
             </div>
@@ -182,3 +247,8 @@
 
     </div>
 </div>
+<footer class="text-white">
+    <hr>
+    <div class="">Made by Bamsti</div>
+    <div>Bei Fehlern bitte einen <a href="https://github.com/HaunBa/PartyInvitation/issues/new/choose">Bugreport</a> schreiben.</div>
+</footer>
