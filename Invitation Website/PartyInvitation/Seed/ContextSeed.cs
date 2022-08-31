@@ -4,57 +4,46 @@
     {
         public static void SeedUser(InvitationToolContext _db)
         {
-            if (!_db.People.Any(x => x.PersonName == "Haunschmied Bastian"))
+            List<string> Names = new();
+
+            Names.Add("Haunschmied Bastian");
+            Names.Add("Grabmeir Marcel");
+            Names.Add("Leutgöb Fabian");
+            Names.Add("Märzinger Selina");
+            Names.Add("Pointner Emelie");
+            Names.Add("Müller Stefan");
+            Names.Add("Tuzi Elena");
+
+            foreach (var item in Names)
             {
-                Person user = new ();
+                if (!_db.People.Any(x => x.PersonName == item))
+                {
+                    Person user = new();
 
-                user.PersonName = "Haunschmied Bastian";
-                user.PersonNameHashed = user.PersonName.ToSha256();
-                user.RequestRequests = new List<Request>();
-                user.PersonRequestState = 0;
+                    user.PersonName = item;
+                    user.PersonNameHashed = user.PersonName.ToSha256();
+                    user.RequestRequests = new List<Request>();
+                    user.PersonRequestState = 0;
 
-                _db.People.Add(user);
-                _db.SaveChanges();
+                    _db.People.Add(user);
+                    _db.SaveChanges();
+                }
+            }
+        }
+
+        public static void ClearAllDbData(InvitationToolContext _db)
+        {
+            foreach (var item in _db.Requests)
+            {
+                _db.Requests.Remove(item);
             }
 
-            if (!_db.People.Any(x => x.PersonName == "Haunschmied Bastian"))
+            foreach (var item in _db.People)
             {
-                Person user = new();
-
-                user.PersonName = "Haunschmied Bastian";
-                user.PersonNameHashed = user.PersonName.ToSha256();
-                user.RequestRequests = new List<Request>();
-                user.PersonRequestState = 0;
-
-                _db.People.Add(user);
-                _db.SaveChanges();
+                _db.People.Remove(item);
             }
 
-            if (!_db.People.Any(x => x.PersonName == "Haunschmied Bastian"))
-            {
-                Person user = new();
-
-                user.PersonName = "Haunschmied Bastian";
-                user.PersonNameHashed = user.PersonName.ToSha256();
-                user.RequestRequests = new List<Request>();
-                user.PersonRequestState = 0;
-
-                _db.People.Add(user);
-                _db.SaveChanges();
-            }
-
-            if (!_db.People.Any(x => x.PersonName == "Haunschmied Bastian"))
-            {
-                Person user = new();
-
-                user.PersonName = "Haunschmied Bastian";
-                user.PersonNameHashed = user.PersonName.ToSha256();
-                user.RequestRequests = new List<Request>();
-                user.PersonRequestState = 0;
-
-                _db.People.Add(user);
-                _db.SaveChanges();
-            }
+            _db.SaveChanges();
         }
     }
 }
