@@ -39,6 +39,31 @@
         InvokeAsync(StateHasChanged);
     }
 
+    void Submit(){
+
+        foreach (var item in Requests)
+        {
+            _req.AddRequestToPerson(item, UserHash);
+        }
+
+        switch (state)
+        {
+            case 1:
+                _person.SetPersonToComing(UserHash);
+                break;
+            case 2:
+                _person.SetPersonToMaybe(UserHash);
+                break;
+            case 3:
+                _person.SetPersonToDeclined(UserHash);
+                break;
+            default:
+                break;
+        }
+
+        _nav.NavigateTo("");
+    }
+
     void RemoveFromList(string articleName){
         Requests.Remove(Requests.First(x => x.RequestArticle.Equals(articleName)));
 
@@ -47,10 +72,18 @@
 
     protected override async void OnInitialized()
     {
+        for (int i = 0; i < 6; i++)
+        {
+            PeopleCount.Add(0);
+        }
         var person = await _person.GetPersonByHash(UserHash);
         if (person == null) _nav.NavigateTo("~/");
-        if (!await _person.IsPersonAllowed(UserHash)) _nav.NavigateTo("~/");
 
+        //if (!await _person.IsPersonAllowed(UserHash)) {
+        //    _nav.NavigateTo("");
+        //    return;
+        //};
+        
         PeopleCount = await _person.GetAllReports();
 
         Person = person;
@@ -66,11 +99,11 @@
         <!-- Text -->
         <h3>Hier steht Text : )</h3>
     </div>
-    <div class="row mt-5">
+    <div class="row justify-content-center mt-5">
         <!-- Form -->
 
         <div class="row">
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -112,7 +145,7 @@
             <button class="@(state == 3 ? "btn btn-danger" : "btn btn-outline-danger")" @onclick="() => SetState(3)"> Absage</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-5">
         <!-- Statistics -->
 
         <h3>Anzahl Eingeladener: @PeopleCount[0]</h3>
@@ -120,5 +153,32 @@
         <h3>Zugesagt : @PeopleCount[2]</h3>
         <h3>Vielleicht: @PeopleCount[3]</h3>
         <h3>Abgesagt: @PeopleCount[4]</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary w-50 center" data-bs-toggle="modal" data-bs-target="#submitContext">
+            Abschließen
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="submitContext" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Willst du den Vorgang abschließen?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Bist du dir sicher, dass du alles richtig eingegeben hast?
+                        Nach dem Abschicken können deine Eingaben nicht mehr geändert werden.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="() => Submit()" >Abschicken</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

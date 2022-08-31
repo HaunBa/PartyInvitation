@@ -6,7 +6,7 @@
         {
             if (!_db.People.Any(x => x.PersonName == "Bastian"))
             {
-                var user = new Person();
+                Person user = new ();
 
                 user.PersonName = "Bastian";
                 user.PersonNameHashed = user.PersonName.ToSha256();
