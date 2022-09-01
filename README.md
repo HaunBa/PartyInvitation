@@ -27,7 +27,13 @@
 ## ⚡ **Installation**
 
 * <!-- ... [SHOW HOW YOUR PROJECT IS INSTALLED] -->
-
+ <h2>Things you have to have installed to run</h2>
+ <ul>
+  <li>.Net 6.0.8 Runtime</li>
+  <li>XAMPP (or any other MySql Hosting service)</li>
+  <li>MariaDB Version 10.4.24</li>
+  <li>IIS</li>
+ </ul>
 ---
 
 ## 🚀 **Usage**
@@ -66,8 +72,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/HaunBa/PartyInvitation.svg?style=social)](https://github.com/HaunBa/PartyInvitation/stargazers)
 [![GitHub watchers](https://img.shields.io/github/watchers/HaunBa/PartyInvitation.svg?style=social)](https://github.com/HaunBa/PartyInvitation/watchers)
 [![GitHub forks](https://img.shields.io/github/forks/HaunBa/PartyInvitation.svg?style=social)](https://github.com/HaunBa/PartyInvitation/network/members)
-<!-- MODIFY THIS LINK TO YOUR MAIN DONATING SITE IF YOU ARE NOT IN THE GITHUB SPONSORS PROGRAM -->
-[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=github-sponsors&color=red&style=social)](https://github.com/sponsors/HaunBa)
 
 Enjoy! 😃
 
