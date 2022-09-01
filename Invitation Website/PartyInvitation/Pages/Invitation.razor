@@ -112,10 +112,10 @@
             return;
         }
 
-        //if (!await _person.IsPersonAllowed(UserHash)) {
-        //    _nav.NavigateTo("");
-        //    return;
-        //};
+        if (!await _person.IsPersonAllowed(UserHash)) {
+            _nav.NavigateTo("");
+            return;
+        };
         
         PeopleCount = await _person.GetAllReports();
 
@@ -149,10 +149,10 @@
         <h3 class="mb-5">Nachdem ich nicht auswendig weiß wer was isst / trinkt, bitte ich dich deine Wünsche unten in die Tabelle ein zu tragen</h3>
 
         <h2><ins>Wie kann ich Zu- / Absagen?</ins></h2>
-        <h3 class="mb-5">Unter den Getränke befinden sich 3 Buttons. Zusagen, Vielleicht, Absagen. Einfach auf einen Klicken, sodass der Button voll ist. So einfach ist es. </h3>
+        <h3 class="mb-5">Unter den Getränken befinden sich 3 Buttons. Zusagen, Vielleicht, Absagen. Einfach auf einen Klicken, sodass der Button voll ist. So einfach ist es. </h3>
 
         <h2><ins>Gibt es sonst noch etwas zu Wissen?</ins></h2>
-        <h3>Ja. "Ihr verliert kein Wort über Haunis Kellerparty"</h3>
+        <h3>Ja. "Regel Nr. 1: Ihr verliert kein Wort über Haunis Kellerparty"</h3>
 
     </div>
     <div class="row justify-content-center mt-5">
@@ -162,8 +162,8 @@
             <table class="table table-striped text-center">
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
                         <th scope="col">Anzahl</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Löschen</th>
                     </tr>
                 </thead>
@@ -171,8 +171,8 @@
                     @foreach (var item in Requests)
                     {
                         <tr>
-                            <td>@item.RequestArticle</td>
                             <td>@item.RequestAmount</td>
+                            <td>@item.RequestArticle</td>
                             <td><button class="btn btn-danger" @onclick="() => RemoveFromList(item.RequestArticle)">Löschen</button></td>
                         </tr>
                     }
@@ -218,6 +218,7 @@
         <h3>Zugesagt : @PeopleCount[2]</h3>
         <h3>Vielleicht: @PeopleCount[3]</h3>
         <h3>Abgesagt: @PeopleCount[4]</h3>
+
     </div>
 
     <div class="row justify-content-center">
